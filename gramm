@@ -1,0 +1,46 @@
+program : statements
+
+statements : statement
+           | statements statement
+
+statement : assignment SEMICOLON
+          | expression SEMICOLON
+          | if_statement
+          | while_loop
+          | for_loop
+          | function_definition
+          | class_definition
+          | return_statement SEMICOLON
+          | print_statement SEMICOLON
+
+expression : INTEGER
+           | FLOAT_NUMBER
+           | STRING
+           | IDENTIFIER
+           | LPAREN expression RPAREN
+           | expression PLUS expression
+           | expression MINUS expression
+           | expression MULTIPLY expression
+           | expression DIVIDE expression
+           | expression MODULO expression
+
+assignment : IDENTIFIER EQUALS expression
+
+if_statement : IF expression COLON statements
+             | IF expression COLON statements ELSE COLON statements
+
+while_loop : WHILE expression COLON statements
+
+for_loop : FOR IDENTIFIER IN expression COLON statements
+
+function_definition : DEF IDENTIFIER LPAREN RPAREN COLON statements
+                    | DEF IDENTIFIER LPAREN parameters RPAREN COLON statements
+
+parameters : IDENTIFIER
+           | parameters COMMA IDENTIFIER
+
+class_definition : CLASS IDENTIFIER COLON statements
+
+return_statement : RETURN expression
+
+print_statement : PRINT LPAREN expression RPAREN
